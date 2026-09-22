@@ -1,0 +1,134 @@
+{
+  "source": "CICIDS2017 test traffic",
+  "total_attack_flows": 288923,
+  "total_attack_nodes": 12,
+  "categories": {
+    "Bot": 1966,
+    "PortScan": 158930,
+    "DDoS": 128027
+  },
+  "nodes": [
+    {
+      "ip": "192.168.10.50",
+      "critical": true,
+      "attack_flow_count": 286957,
+      "attack_source_flow_count": 3,
+      "attack_destination_flow_count": 286954,
+      "attack_categories": [
+        "DDoS",
+        "PortScan"
+      ]
+    },
+    {
+      "ip": "172.16.0.1",
+      "critical": true,
+      "attack_flow_count": 286957,
+      "attack_source_flow_count": 286954,
+      "attack_destination_flow_count": 3,
+      "attack_categories": [
+        "DDoS",
+        "PortScan"
+      ]
+    },
+    {
+      "ip": "205.174.165.73",
+      "critical": true,
+      "attack_flow_count": 1962,
+      "attack_source_flow_count": 705,
+      "attack_destination_flow_count": 1257,
+      "attack_categories": [
+        "Bot"
+      ]
+    },
+    {
+      "ip": "192.168.10.15",
+      "critical": true,
+      "attack_flow_count": 580,
+      "attack_source_flow_count": 371,
+      "attack_destination_flow_count": 209,
+      "attack_categories": [
+        "Bot"
+      ]
+    },
+    {
+      "ip": "192.168.10.8",
+      "critical": true,
+      "attack_flow_count": 374,
+      "attack_source_flow_count": 271,
+      "attack_destination_flow_count": 103,
+      "attack_categories": [
+        "Bot"
+      ]
+    },
+    {
+      "ip": "192.168.10.9",
+      "critical": true,
+      "attack_flow_count": 372,
+      "attack_source_flow_count": 226,
+      "attack_destination_flow_count": 146,
+      "attack_categories": [
+        "Bot"
+      ]
+    },
+    {
+      "ip": "192.168.10.14",
+      "critical": true,
+      "attack_flow_count": 348,
+      "attack_source_flow_count": 209,
+      "attack_destination_flow_count": 139,
+      "attack_categories": [
+        "Bot"
+      ]
+    },
+    {
+      "ip": "192.168.10.5",
+      "critical": true,
+      "attack_flow_count": 288,
+      "attack_source_flow_count": 180,
+      "attack_destination_flow_count": 108,
+      "attack_categories": [
+        "Bot"
+      ]
+    },
+    {
+      "ip": "52.7.235.158",
+      "critical": true,
+      "attack_flow_count": 2,
+      "attack_source_flow_count": 0,
+      "attack_destination_flow_count": 2,
+      "attack_categories": [
+        "Bot"
+      ]
+    },
+    {
+      "ip": "52.6.13.28",
+      "critical": true,
+      "attack_flow_count": 2,
+      "attack_source_flow_count": 0,
+      "attack_destination_flow_count": 2,
+      "attack_categories": [
+        "Bot"
+      ]
+    },
+    {
+      "ip": "192.168.10.17",
+      "critical": true,
+      "attack_flow_count": 2,
+      "attack_source_flow_count": 2,
+      "attack_destination_flow_count": 0,
+      "attack_categories": [
+        "Bot"
+      ]
+    },
+    {
+      "ip": "192.168.10.12",
+      "critical": true,
+      "attack_flow_count": 2,
+      "attack_source_flow_count": 2,
+      "attack_destination_flow_count": 0,
+      "attack_categories": [
+        "Bot"
+      ]
+    }
+  ]
+}
