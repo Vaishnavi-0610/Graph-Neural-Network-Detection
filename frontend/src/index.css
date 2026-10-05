@@ -1716,3 +1716,350 @@ body {
 .cyber-search-result {
   min-height: 44px;
 }
+
+/* ============================================================
+   COOKIE / PRIVACY BANNER — FINAL COMPACT SOC VERSION
+   ============================================================ */
+
+.cyber-cookie-banner {
+  position: fixed;
+  z-index: 9999;
+
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+
+  width: min(1050px, calc(100vw - 36px));
+  min-height: 64px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  padding: 11px 13px;
+
+  background: rgba(5, 7, 9, 0.97);
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-left: 2px solid #c81b1c;
+
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.65),
+    0 0 22px rgba(200, 27, 28, 0.06);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  overflow: hidden;
+  isolation: isolate;
+
+  animation: cookie-banner-in 0.35s ease-out both;
+}
+
+/* top technical line */
+.cyber-cookie-banner::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    #c81b1c,
+    rgba(200, 27, 28, 0.3) 25%,
+    transparent 65%
+  );
+
+  pointer-events: none;
+}
+
+/* ============================================================
+   CONTENT
+   ============================================================ */
+
+.cyber-cookie-content {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+}
+
+.cyber-cookie-icon {
+  flex: 0 0 25px;
+
+  width: 25px;
+  height: 25px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(200, 27, 28, 0.5);
+  background: rgba(200, 27, 28, 0.05);
+}
+
+.cyber-cookie-icon::before {
+  content: "";
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #c81b1c;
+
+  box-shadow:
+    0 0 9px rgba(200, 27, 28, 0.8);
+}
+
+.cyber-cookie-copy {
+  min-width: 0;
+}
+
+.cyber-cookie-title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+.cyber-cookie-title {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-family:
+    "JetBrains Mono",
+    "Courier New",
+    monospace;
+
+  font-size: 9px;
+  line-height: 1.2;
+
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+}
+
+.cyber-cookie-status {
+  color: #44d79a;
+
+  font-family:
+    "JetBrains Mono",
+    "Courier New",
+    monospace;
+
+  font-size: 6px;
+
+  line-height: 1;
+
+  letter-spacing: 0.1em;
+
+  white-space: nowrap;
+}
+
+.cyber-cookie-text {
+  margin: 4px 0 0;
+
+  color: #7f898e;
+
+  font-family:
+    "JetBrains Mono",
+    "Courier New",
+    monospace;
+
+  font-size: 8px;
+
+  line-height: 1.4;
+
+  letter-spacing: 0.01em;
+
+  white-space: nowrap;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.cyber-cookie-actions {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+}
+
+.cyber-cookie-actions button {
+  min-height: 32px;
+
+  padding: 0 11px;
+
+  box-sizing: border-box;
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  font-family:
+    "JetBrains Mono",
+    "Courier New",
+    monospace;
+
+  font-size: 7px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.07em;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+/* Privacy */
+.cyber-cookie-policy {
+  color: #b9c1c5;
+
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.cyber-cookie-policy:hover {
+  color: #ffffff;
+
+  border-color: rgba(255, 255, 255, 0.35);
+
+  background: rgba(255, 255, 255, 0.06);
+
+  transform: translateY(-1px);
+}
+
+/* Continue */
+.cyber-cookie-continue {
+  color: #ffffff;
+
+  background: #c81b1c;
+
+  border-color: #c81b1c !important;
+}
+
+.cyber-cookie-continue:hover {
+  background: #e02627;
+
+  border-color: #e02627 !important;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 0 14px rgba(200, 27, 28, 0.2);
+}
+
+.cyber-cookie-actions button:focus-visible {
+  outline: 1px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   ANIMATION
+   ============================================================ */
+
+@keyframes cookie-banner-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .cyber-cookie-banner {
+    width: calc(100vw - 28px);
+
+    gap: 16px;
+  }
+
+  .cyber-cookie-text {
+    white-space: normal;
+  }
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 620px) {
+  .cyber-cookie-banner {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+
+    transform: none;
+
+    width: auto;
+
+    display: block;
+
+    padding: 12px;
+  }
+
+  .cyber-cookie-content {
+    align-items: flex-start;
+  }
+
+  .cyber-cookie-text {
+    white-space: normal;
+
+    font-size: 8px;
+
+    line-height: 1.5;
+  }
+
+  .cyber-cookie-actions {
+    margin-top: 10px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 6px;
+  }
+
+  .cyber-cookie-actions button {
+    width: 100%;
+
+    min-height: 36px;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .cyber-cookie-banner {
+    animation: none;
+  }
+
+  .cyber-cookie-actions button {
+    transition: none;
+  }
+}

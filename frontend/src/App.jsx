@@ -13,6 +13,10 @@ import ResearchResults from "./pages/ResearchResults";
 import LateralMovement from "./pages/LateralMovement";
 import Model from "./pages/Model";
 import Settings from "./pages/Settings";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import BackToTop from "./components/BackToTop";
+import CookieBanner from "./components/CookieBanner";
+import ScrollProgress from "./components/ScrollProgress";
 
 /* =========================================================
    PAGE ROUTES
@@ -28,6 +32,7 @@ const pages = {
   lateral: LateralMovement,
   model: Model,
   settings: Settings,
+  privacy: PrivacyPolicy,
 };
 
 /* =========================================================
@@ -81,6 +86,36 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [booting, setBooting] = useState(true);
   const [interfaceReady, setInterfaceReady] = useState(false);
+
+  useEffect(() => {
+    const openPrivacy = () => setActivePage("privacy");
+    const openSettings = () => setActivePage("settings");
+    window.addEventListener("open-privacy", openPrivacy);
+    window.addEventListener("open-settings", openSettings);
+    return () => {
+      window.removeEventListener("open-privacy", openPrivacy);
+      window.removeEventListener("open-settings", openSettings);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (import.meta.env.PROD && window.location.protocol === "http:" && !["localhost", "127.0.0.1"].includes(window.location.hostname)) {
+      window.location.replace(`https://${window.location.host}${window.location.pathname}${window.location.search}${window.location.hash}`);
+    }
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const utm = {};
+    for (const [key, value] of params.entries()) {
+      if (key.toLowerCase().startsWith("utm_")) utm[key] = value;
+    }
+    if (Object.keys(utm).length) {
+      try {
+        sessionStorage.setItem("gnn_utm", JSON.stringify({ ...utm, capturedAt: new Date().toISOString() }));
+      } catch {}
+    }
+  }, []);
 
   useEffect(() => {
     const openLateral = () => setActivePage("lateral");
@@ -168,9 +203,10 @@ function App() {
         <Topbar
           setActivePage={setActivePage}
           setSidebarOpen={setSidebarOpen}
+          sidebarOpen={sidebarOpen}
         />
 
-        <main className="cyber-content px-4 py-5 sm:px-6 lg:px-8 lg:py-7">
+        <main id="main-content" tabIndex="-1" className="cyber-content px-4 py-5 sm:px-6 lg:px-8 lg:py-7">
           <AnimatePresence mode="wait">
             <motion.div
               key={activePage}
@@ -188,6 +224,10 @@ function App() {
           </AnimatePresence>
         </main>
       </div>
+
+      <ScrollProgress />
+      <CookieBanner />
+      <BackToTop />
     </div>
   );
 }

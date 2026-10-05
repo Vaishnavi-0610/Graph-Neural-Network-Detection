@@ -1,14 +1,4 @@
-import {
-  Activity,
-  BarChart3,
-  BrainCircuit,
-  ChevronRight,
-  GitBranch,
-  LayoutDashboard,
-  Settings,
-  UploadCloud,
-  X,
-} from "lucide-react";
+import { Activity, BarChart3, BrainCircuit, ChevronRight, GitBranch, LayoutDashboard, Settings, UploadCloud, X } from "lucide-react";
 
 const navigation = [
   { id: "dashboard", label: "Dashboard", code: "01", icon: LayoutDashboard },
@@ -36,102 +26,44 @@ function GnnLogo() {
   );
 }
 
-function Sidebar({
-  activePage,
-  setActivePage,
-  sidebarOpen,
-  setSidebarOpen,
-}) {
-  const navigate = (page) => {
-    setActivePage(page);
-    setSidebarOpen(false);
-  };
-
+function Sidebar({ activePage, setActivePage, sidebarOpen, setSidebarOpen }) {
   return (
     <>
       {sidebarOpen && (
-        <button
-          type="button"
-          aria-label="Close navigation"
-          onClick={() => setSidebarOpen(false)}
-          className="cyber-overlay lg:hidden"
-        />
+        <button type="button" aria-label="Close navigation" onClick={() => setSidebarOpen(false)} className="cyber-overlay lg:hidden" />
       )}
 
-      <aside
-        className={`
-          cyber-sidebar
-          fixed left-0 top-0 z-[60] h-screen
-          ${sidebarOpen ? "is-open" : ""}
-        `}
-      >
+      <aside id="primary-navigation" className={`cyber-sidebar fixed left-0 top-0 z-[60] h-screen ${sidebarOpen ? "block is-open" : "hidden"}`}>
         <div className="flex h-full flex-col">
           <div className="cyber-brand">
-            <button
-              type="button"
-              className="cyber-brand-link"
-              onClick={() => navigate("dashboard")}
-              aria-label="GNN Security Engine dashboard"
-            >
-              <div className="cyber-brand-logo">
-                <GnnLogo />
-              </div>
-
+            <button type="button" className="cyber-brand-link" onClick={() => setActivePage("dashboard")} aria-label="GNN Security Engine dashboard">
+              <div className="cyber-brand-logo"><GnnLogo /></div>
               <div className="cyber-brand-copy">
-                <div className="cyber-kicker">
-                  GNN / SECURITY ENGINE
-                </div>
-                <div className="cyber-brand-sub">
-                  ENTERPRISE / SOC
-                </div>
+                <div className="cyber-kicker">GNN / SECURITY ENGINE</div>
+                <div className="cyber-brand-sub">ENTERPRISE / SOC</div>
               </div>
             </button>
-
-            <button
-              type="button"
-              onClick={() => setSidebarOpen(false)}
-              className="cyber-close-mobile lg:hidden"
-              aria-label="Close navigation"
-            >
-              <X size={17} />
-            </button>
+            <button type="button" onClick={() => setSidebarOpen(false)} className="cyber-close-mobile lg:hidden" aria-label="Close navigation"><X size={17} /></button>
           </div>
 
           <div className="cyber-sidebar-nav px-4 pt-8">
-            <div className="cyber-section-label">
-              OPERATIONS / SYSTEM
-            </div>
-
-            <nav className="mt-4 space-y-2">
+            <div className="cyber-section-label">OPERATIONS / SYSTEM</div>
+            <nav className="mt-3 space-y-1">
               {navigation.map((item, index) => {
                 const Icon = item.icon;
                 const active = activePage === item.id;
-
                 return (
                   <button
                     key={item.id}
                     type="button"
-                    onClick={() => navigate(item.id)}
+                    onClick={() => setActivePage(item.id)}
                     className={`cyber-nav-item group ${active ? "is-active" : ""}`}
-                    style={{
-                      "--nav-delay": `${0.35 + index * 0.07}s`,
-                    }}
+                    style={{ "--nav-delay": `${0.35 + index * 0.07}s` }}
                   >
-                    <span className="cyber-nav-code" aria-hidden="true">
-                      {item.code}
-                    </span>
-
-                    <Icon size={15} aria-hidden="true" />
-
-                    <span className="cyber-nav-label">
-                      {item.label}
-                    </span>
-
-                    {active && (
-                      <span className="cyber-nav-chevron" aria-hidden="true">
-                        <ChevronRight size={13} />
-                      </span>
-                    )}
+                    <span className="cyber-nav-code">{item.code}</span>
+                    <Icon size={15} />
+                    <span>{item.label}</span>
+                    {active && <ChevronRight size={13} className="ml-auto" />}
                   </button>
                 );
               })}
@@ -139,51 +71,23 @@ function Sidebar({
           </div>
 
           <div className="mt-auto px-4 pb-5">
-            <button
-              type="button"
-              onClick={() => navigate("settings")}
-              className={`cyber-nav-item mb-4 ${
-                activePage === "settings" ? "is-active" : ""
-              }`}
-              style={{ "--nav-delay": "0.8s" }}
-            >
-              <span className="cyber-nav-code" aria-hidden="true">
-                09
-              </span>
-
-              <Settings size={15} aria-hidden="true" />
-
-              <span className="cyber-nav-label">Settings</span>
-
-              {activePage === "settings" && (
-                <span className="cyber-nav-chevron" aria-hidden="true">
-                  <ChevronRight size={13} />
-                </span>
-              )}
+            <button type="button" onClick={() => setActivePage("settings")} className={`cyber-nav-item mb-4 ${activePage === "settings" ? "is-active" : ""}`} style={{ "--nav-delay": "0.8s" }}>
+              <span className="cyber-nav-code">09</span>
+              <Settings size={15} />
+              <span>Settings</span>
             </button>
 
             <div className="cyber-status-block">
               <div className="flex items-center gap-2">
                 <span className="cyber-live-dot" />
-                <span className="cyber-status-title">
-                  ENGINE ONLINE
-                </span>
+                <span className="cyber-status-title">ENGINE ONLINE</span>
               </div>
-
               <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2">
-                <span>MODEL</span>
-                <b>Edge-Aware GNN</b>
-
-                <span>DEVICE</span>
-                <b>CPU</b>
-
-                <span>THRESHOLD</span>
-                <b>0.67</b>
+                <span>MODEL</span><b>Edge-Aware GNN</b>
+                <span>DEVICE</span><b>CPU</b>
+                <span>THRESHOLD</span><b>0.67</b>
               </div>
-
-              <div className="mt-3 border-t border-white/[0.06] pt-3 text-xs leading-5 text-slate-500">
-                CICIDS2017 / unseen-category evaluation
-              </div>
+              <div className="mt-3 border-t border-white/[0.06] pt-3 text-[9px] leading-4 text-slate-600">CICIDS2017 / unseen-category evaluation</div>
             </div>
           </div>
         </div>
